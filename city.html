@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select City</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:url("https://images.unsplash.com/photo-1523580494863-6f3031224c94") center/cover fixed;
+}
+
+.overlay{
+background:rgba(0,0,0,0.7);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+}
+
+h2{
+margin-bottom:30px;
+font-size:32px;
+}
+
+.city{
+width:220px;
+padding:15px;
+margin:8px;
+border:none;
+background:#ff9800;
+color:white;
+font-size:18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.city:hover{
+background:#e68900;
+}
+
+</style>
+
+<script>
+
+function go(city){
+
+localStorage.setItem("city",city)
+window.location="form.html"
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h2>Where Are You From?</h2>
+
+<button class="city" onclick="go('Mehsana')">Mehsana</button>
+<button class="city" onclick="go('Palanpur')">Palanpur</button>
+<button class="city" onclick="go('Deesa')">Deesa</button>
+<button class="city" onclick="go('Sidhdhpur')">Sidhdhpur</button>
+<button class="city" onclick="go('Himmatnagar')">Himmatnagar</button>
+<button class="city" onclick="go('Visanagar')">Visanagar</button>
+<button class="city" onclick="go('Modasa')">Modasa</button>
+
+</div>
+
+</body>
+</html>

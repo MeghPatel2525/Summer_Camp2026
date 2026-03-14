@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Camp Registration</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3") center/cover fixed;
+}
+
+.overlay{
+background:rgba(0,0,0,0.75);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.formbox{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.3);
+padding:35px;
+width:360px;
+border-radius:15px;
+text-align:center;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+h2{
+margin-bottom:20px;
+}
+
+.cityBadge{
+background:#ff9800;
+display:inline-block;
+padding:8px 18px;
+border-radius:20px;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+outline:none;
+font-size:14px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#ff9800;
+border:none;
+color:white;
+font-size:17px;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#e68900;
+}
+
+.contactBox{
+margin-top:20px;
+padding:15px;
+border-radius:10px;
+background:linear-gradient(45deg,#ff9800,#ff5722);
+color:white;
+font-size:18px;
+font-weight:bold;
+box-shadow:0 0 12px rgba(255,152,0,0.9);
+}
+
+.contactNumber{
+font-size:22px;
+margin-top:5px;
+}
+
+/* SUCCESS POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0.8);
+background:white;
+padding:35px;
+border-radius:15px;
+text-align:center;
+width:300px;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+animation:pop 0.4s forwards;
+}
+
+.popup h3{
+color:#4CAF50;
+margin-bottom:10px;
+}
+
+.popup p{
+font-size:16px;
+color:#333;
+}
+
+@keyframes pop{
+to{
+transform:translate(-50%,-50%) scale(1);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="formbox">
+
+<h2>Summer Camp Registration</h2>
+
+<div class="cityBadge" id="cityBadge"></div>
+
+<form id="regForm" onsubmit="submitForm(event)">
+
+<input type="text" id="name" placeholder="Student Full Name" required>
+
+<input type="number" id="age" placeholder="Age" required>
+
+<input type="tel" id="contactInput" placeholder="Parent Contact No" required>
+
+<input type="text" id="address" placeholder="Address" required>
+
+<button type="submit">Complete Registration</button>
+
+</form>
+
+<div class="contactBox">
+For More Information Call On
+<div class="contactNumber" id="contact"></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<h3>🎉 Registration Successful!</h3>
+
+<p>
+Welcome to the <b>Limco Abacus Summer Camp</b>.<br><br>
+Your registration has been received successfully.<br>
+Our team will contact you soon with further details.
+</p>
+
+</div>
+
+<script>
+
+/* GOOGLE SCRIPT URL */
+
+const scriptURL="https://script.google.com/macros/s/AKfycbxBcBJgWeoMJJzOXegCU1oILVVpHUaC8KNGVtG5nCRUvTlaF8LUoujJhWmQe35aA1iC/exec"
+
+/* GET CITY */
+
+let city=localStorage.getItem("city")
+
+document.getElementById("cityBadge").innerText="City : "+city
+
+/* CITY CONTACT NUMBERS */
+
+let phones={
+Mehsana:"6354898363",
+Palanpur:"7359418986",
+Deesa:"7383032100",
+Sidhdhpur:"8980391366",
+Himmatnagar:"9913462976",
+Visanagar:"9824815496",
+Modasa:""
+}
+
+document.getElementById("contact").innerText=phones[city] || ""
+
+/* FORM SUBMIT */
+
+function submitForm(e){
+
+e.preventDefault()
+
+const formData={
+name:document.getElementById("name").value,
+age:document.getElementById("age").value,
+contact:document.getElementById("contactInput").value,
+address:document.getElementById("address").value,
+city:city
+}
+
+fetch(scriptURL,{
+method:"POST",
+body:JSON.stringify(formData)
+})
+
+.then(res=>res.text())
+.then(data=>{
+
+document.getElementById("popup").style.display="block"
+
+document.getElementById("regForm").reset()
+
+setTimeout(()=>{
+document.getElementById("popup").style.display="none"
+},4000)
+
+})
+
+.catch(error=>{
+alert("Something went wrong. Please try again.")
+})
+
+}
+
+</script>
+
+</body>
+</html>
