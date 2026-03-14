@@ -152,7 +152,7 @@ transform:translate(-50%,-50%) scale(1);
 
 <div class="contactBox">
 For More Information Call On
-<div class="contactNumber" id="contact"></div>
+<a id="contact" class="contactNumber"></a>
 </div>
 
 </div>
@@ -196,7 +196,9 @@ Modasa:"9313593537",
 Patan:"8401697688"
 }
 
-document.getElementById("contact").innerText=phones[city] || ""
+let number = phones[city] || ""
+document.getElementById("contact").innerText = number
+document.getElementById("contact").href = "tel:" + number
 
 /* FORM SUBMIT */
 
