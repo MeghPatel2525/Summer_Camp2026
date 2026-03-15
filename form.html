@@ -174,7 +174,7 @@ transform:translate(-50%,-50%) scale(1);
 </form>
 
 <div class="contactBox">
-Click Here To Get More Information
+For More Information Call On
 <a id="contact" class="callBtn"></a>
 </div>
 
@@ -250,6 +250,10 @@ body:JSON.stringify(formData)
 .then(data=>{
 
 document.getElementById("popup").style.display="block"
+
+setTimeout(function(){
+document.getElementById("popup").style.display="none"
+},3000)
 
 document.getElementById("regForm").reset()
 
