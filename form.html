@@ -115,7 +115,30 @@ margin-bottom:10px;
 font-size:16px;
 color:#333;
 }
+.callBtn{
+display:inline-block;
+background:#ff5722;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+text-decoration:none;
+margin-top:15px;
+border:none;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
 
+.callBtn:hover{
+background:#e64a19;
+}
+
+.callBtn:link,
+.callBtn:visited{
+color:white;
+text-decoration:none;
+}
 @keyframes pop{
 to{
 transform:translate(-50%,-50%) scale(1);
@@ -152,7 +175,7 @@ transform:translate(-50%,-50%) scale(1);
 
 <div class="contactBox">
 For More Information Call On
-<a id="contact" class="contactNumber"></a>
+<a id="contact" class="callBtn"></a>
 </div>
 
 </div>
